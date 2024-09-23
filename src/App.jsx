@@ -1,16 +1,14 @@
-import { useState } from 'react'
-import './App.css'
-import { PizzasList } from './components/pizzas-list'
-import { Header } from './components/header'
-import { DraggableModal } from './components/modal'
+import { PizzasList } from './components/pizzas-list/pizzas-list'
+import { Header } from './components/header/header'
+import { PizzaListTitle } from './components/pizza-list-title/pizza-list-title'
 
 function App() {
   
   return (
-      <div className='App'>
+      <div>
         <Header />
+        <PizzaListTitle />
         <PizzasList />  
-        <DraggableModal />
       </div>
   )
 }

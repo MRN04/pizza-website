@@ -1,0 +1,12 @@
+.pizza-list-title {
+    margin: 75px 50px 30px 50px;
+    border-bottom: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+        font-size: 50px;
+    }
+
+}

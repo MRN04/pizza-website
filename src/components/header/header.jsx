@@ -1,7 +1,9 @@
 import { useAtom } from "jotai";
-import { pizzaAtom } from "../store/atoms"
+import { pizzaAtom } from "../../store/atoms"
+import { counter } from "../../store/atoms";
 import { useMemo, useState } from "react";
-import { counter } from "../store/atoms";
+import logo from "../../assets/logo.png"
+import "./header.css"
 
 export function Header() {
     const [pizzas, setPizzas] = useAtom(pizzaAtom)
@@ -27,7 +29,7 @@ export function Header() {
     
     return(
         <header className="header">
-            <h2>Some pizza restourant</h2>
+            <img src={logo} className="logo"/>
             <button className="open-cart-btn" onClick={openCart}><span className="pizza-counter">{pizzaCounter}</span></button>
             <div className="cart">
                 <div className="options">
