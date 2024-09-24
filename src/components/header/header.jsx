@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { pizzaAtom } from "../../store/atoms"
+import { allPizzas, pizzaAtom } from "../../store/atoms"
 import { useMemo, useState } from "react";
 import logo from "../../assets/logo.png"
 import "./header.css"
@@ -17,10 +17,25 @@ export function Header() {
     function removePizza(pizza) {
         const updatedPizzasList = pizzas.filter(item => item !== pizza)
         setPizzas(updatedPizzasList)
+        pizza.count = 0
+        console.log(pizza.count)
     }
 
     function clearPizzas() {
         setPizzas([])
+        for (let i = 0; i < pizzas.length; i++) {
+            pizzas[i].count = 0
+        }
+    }
+
+    function reducePizzaAmount(pizza) {
+        pizza.count--
+        console.log(pizza.count);
+    }
+
+    function increasePizzaAmount(pizza) {
+        pizza.count++
+        console.log(pizza.count);
     }
     
     return(
@@ -34,6 +49,11 @@ export function Header() {
                         <div className="pizza-info">
                             <h3 className="pizza-name">{pizza.name}</h3>
                             <p className="price">{pizza.price}</p>
+                        </div>
+                        <div className="pizza-amount">
+                            <button className="amount-btn" onClick={() => reducePizzaAmount(pizza)}>-</button>
+                            <span>{pizza.count}</span>
+                            <button className="amount-btn" onClick={() => increasePizzaAmount(pizza)}>+</button>
                         </div>
                         <button className="remove-btn" onClick={() => removePizza(pizza)}></button>
                     </div>

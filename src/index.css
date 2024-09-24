@@ -25,6 +25,10 @@
   }
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 input {
   padding: 12px 24px;
   border-radius: 40px;
