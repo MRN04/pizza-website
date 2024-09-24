@@ -78,3 +78,4 @@ export const allPizzas = atom(
     ]
 )
 export const samePizzasAmount = atom(0)
+export const searchFilterValue = atom("")

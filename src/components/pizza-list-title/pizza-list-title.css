@@ -33,5 +33,15 @@
             display: flex;
             gap: 20px;
         }
+
+        .name-filter {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            
+            input {
+                width: 100%;
+            }
+        }
     }
 }
