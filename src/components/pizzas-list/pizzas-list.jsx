@@ -12,12 +12,24 @@ export function PizzasList() {
     
     function addToCart(pizza, el) {
         if (pizza.count === 0) {
+            const pizzaIndex = pizza.index
             const updatedCartList = [...pizzasCart, pizza]
+            for (let i = 0; i < updatedCartList.length; i++) {
+                if (updatedCartList[i].index === pizzaIndex) {
+                    updatedCartList[i].count++
+                }
+            }
             setPizzasCart(updatedCartList)
-            pizza.count++
         }
         else {
-            pizza.count++
+            const pizzaIndex = pizza.index
+            const updatedCounters = [...pizzasCart]
+            for (let i = 0; i < updatedCounters.length; i++) {
+                if (updatedCounters[i].index === pizzaIndex) {
+                    updatedCounters[i].count++
+                }
+            }
+            setPizzasCart(updatedCounters)
         }
     }
 

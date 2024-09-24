@@ -18,7 +18,6 @@ export function Header() {
         const updatedPizzasList = pizzas.filter(item => item !== pizza)
         setPizzas(updatedPizzasList)
         pizza.count = 0
-        console.log(pizza.count)
     }
 
     function clearPizzas() {
@@ -29,13 +28,30 @@ export function Header() {
     }
 
     function reducePizzaAmount(pizza) {
-        pizza.count--
-        console.log(pizza.count);
+        if (pizza.count === 1) {
+            removePizza(pizza)
+        }
+        else {
+            const pizzaIndex = pizza.index
+            const updatedCounters = [...pizzas]
+            for (let i = 0; i < updatedCounters.length; i++) {
+                if (updatedCounters[i].index === pizzaIndex) {
+                    updatedCounters[i].count--
+                }
+            }
+            setPizzas(updatedCounters)
+        }
     }
 
     function increasePizzaAmount(pizza) {
-        pizza.count++
-        console.log(pizza.count);
+        const pizzaIndex = pizza.index
+        const updatedCounters = [...pizzas]
+        for (let i = 0; i < updatedCounters.length; i++) {
+            if (updatedCounters[i].index === pizzaIndex) {
+                updatedCounters[i].count++
+            }
+        }
+        setPizzas(updatedCounters)
     }
     
     return(
