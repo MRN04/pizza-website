@@ -1,17 +1,15 @@
 import { useAtom } from "jotai";
 import { pizzaAtom } from "../../store/atoms"
-import { counter } from "../../store/atoms";
 import { useMemo, useState } from "react";
 import logo from "../../assets/logo.png"
 import "./header.css"
 
 export function Header() {
     const [pizzas, setPizzas] = useAtom(pizzaAtom)
-    const [pizzaCounter, setPizzaCounter] = useAtom(counter)
-
     
     const sum = useMemo(() => pizzas.reduce((acc, pizza) => acc + pizza.price,0), [pizzas])
-
+    
+    
     function openCart(btn) {
         btn.target.nextSibling.classList.toggle("show")
     }
@@ -19,18 +17,16 @@ export function Header() {
     function removePizza(pizza) {
         const updatedPizzasList = pizzas.filter(item => item !== pizza)
         setPizzas(updatedPizzasList)
-        setPizzaCounter(pizzaCounter - 1)
     }
 
     function clearPizzas() {
         setPizzas([])
-        setPizzaCounter(0)
     }
     
     return(
         <header className="header">
             <img src={logo} className="logo"/>
-            <button className="open-cart-btn" onClick={openCart}><span className="pizza-counter">{pizzaCounter}</span></button>
+            <button className="open-cart-btn" onClick={openCart}><span className="pizza-counter">{pizzas.length}</span></button>
             <div className="cart">
                 <div className="options">
                     {pizzas.map((pizza, index) => 

@@ -75,7 +75,7 @@ header {
         .remove-btn {
           width: 30px;
           height: 30px;
-          background: url("/src/assets/trash-can-10416.svg") center/contain no-repeat;
+          background: url("/src/assets/trash-bin-icon.svg") center/contain no-repeat;
           border: none;
         }
       }

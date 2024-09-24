@@ -1,12 +1,37 @@
 .pizza-list-title {
-    margin: 75px 50px 30px 50px;
-    border-bottom: 2px solid #000;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
 
-    h2 {
-        font-size: 50px;
+    .title {
+        margin: 75px 50px 0 50px;
+        border-bottom: 2px solid #000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            font-size: 50px;
+        }
     }
 
+    .filters-menu {
+        padding: 20px;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: 50px;
+        max-width: 500px;
+        border: 1px solid #000;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .price {
+            display: flex;
+            gap: 20px;
+        }
+    }
 }
