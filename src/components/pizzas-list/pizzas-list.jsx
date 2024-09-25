@@ -10,7 +10,7 @@ export function PizzasList() {
     const [pizzasCart, setPizzasCart] = useAtom(pizzaAtom)
     const [samePizzas, setSamePizzasAmount] = useAtom(samePizzasAmount)
     
-    function addToCart(pizza, el) {
+    function addToCart(pizza) {
         if (pizza.count === 0) {
             const pizzaIndex = pizza.index
             const updatedCartList = [...pizzasCart, pizza]
@@ -43,7 +43,7 @@ export function PizzasList() {
                     <p>Інградієнти: {pizza.ingredients}</p>
                 </div>
                 <div className="price">{pizza.price}грн</div>
-                <button className="btn" onClick={(el) => addToCart(pizza, el)}>Додати до кошика</button>
+                <button className="btn" onClick={() => addToCart(pizza)}>Додати до кошика</button>
             </div>
             )}
         </div>

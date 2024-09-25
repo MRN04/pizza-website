@@ -8,6 +8,11 @@ header {
     margin-bottom: 100px;
     position: relative;
     margin: 0 auto;
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
   
     .logo {
       max-width: 75px;
@@ -41,7 +46,7 @@ header {
       padding-right: 0;
       top: 80px;
       right: 0;
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 20px;
   
@@ -51,10 +56,6 @@ header {
         gap: 20px;
         max-height: 500px;
         overflow-y: auto;
-      }
-  
-      &.show {
-        display: flex;
       }
   
       .option {
