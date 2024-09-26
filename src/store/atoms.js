@@ -103,14 +103,16 @@ export const allPizzas = atom(
 export const pizzaAtom = atom([])
 export const samePizzasAmount = atom(0)
 export const searchFilterValue = atom("")
-export const userPizzasInitial = atom([
+export const userPizzasInitial = atom([])
+export const isOpenModal =  atom(false)
+export const userPizzaInitial = atom(
     {
-        name: "Піца Чікен кебаб",
-        price: 300.00,
-        img: "https://dominos.ua/_next/image/?url=https%3A%2F%2Fmedia-v3.dominos.ua%2FProducts%2Fchiken-kebab.webp&w=480&q=75",
-        ingredients: "Огірки мариновані, Цибуля, Гриби, Соус Domino's, Курка, Моцарела, Поливка (соус Burger)",
-        index : 12,
+        name: "",
+        price: 100.00,
+        img: "",
+        ingredients: "",
+        ingredientsArr: [],
+        index : 0,
         count: 0,
     }
-])
-export const isOpenModal =  atom(false)
+)

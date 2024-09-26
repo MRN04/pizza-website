@@ -38,12 +38,20 @@ export function PizzaConstructor() {
         document.body.classList.add("overflow-hidden")
     }
 
+    function deleteUserPizza(pizza) {
+        const updatedUserPizzas = userPizzas.filter(item => item !== pizza)
+        setUserPizzas(updatedUserPizzas)
+    }
+
     if (userPizzas.length === 0) {
         return (
             <div className="no-user-pizzas">
                 <h3>У вас ще немає власно створених піц</h3>
                 <p>Якщоо хочете спробувати незвичне поєднання інградієнтів, створіть власну піцу прямо зараз</p>
                 <button className="btn" onClick={showCreatePizzaModal}>Створити</button>
+                {isModalOpen && 
+                <AddNewPizzaModal />
+                }
             </div>
         )
     }
@@ -65,7 +73,7 @@ export function PizzaConstructor() {
                         <button className="btn" onClick={() => addToCart(pizza)}>Додати до кошика</button>
                         <div className="change-field">
                             <button className="edit-user-pizza-btn"></button>
-                            <button className="delete-user-pizza-btn"></button>
+                            <button className="delete-user-pizza-btn" onClick={() => deleteUserPizza(pizza)}></button>
                         </div>
                     </div>)}
                 </div>

@@ -138,11 +138,12 @@
       h4 {
         font-size: 20px;
         text-align: center;
+        margin-bottom: 20px;
       }
       .checkboxes {
         display: grid;
         gap: 10px;
-        grid-template-columns: 25;
+        grid-template-columns: 250px 250px 250px;
       }
     }
   }
