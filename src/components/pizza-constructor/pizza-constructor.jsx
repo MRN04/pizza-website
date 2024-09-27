@@ -1,5 +1,5 @@
 import "./pizza-constructor.css"
-import { userPizzasInitial, pizzaAtom, isOpenModal } from "../../store/atoms"
+import { userPizzasInitial, pizzaAtom, isOpenModal, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../../store/atoms"
 import { useAtom } from "jotai"
 import { useState } from "react"
 import { AddNewPizzaModal } from "./pizza-constructor-modal"
@@ -9,6 +9,9 @@ export function PizzaConstructor() {
     const [userPizzas, setUserPizzas] = useAtom(userPizzasInitial)
     const [pizzasCart, setPizzasCart] = useAtom(pizzaAtom)
     const [isModalOpen, setIsModalOpen] = useAtom(isOpenModal)
+    const [isChange, setIsChange] = useAtom(isPizzaToChange)
+    const [isAdd, setIsAdd] = useAtom(isPizzaToAdd)
+    const [pizzaToChange, setPizzaToChange] = useAtom(pizzaToChangeInitial)
     
     function addToCart(pizza) {
         if (pizza.count === 0) {
@@ -34,6 +37,7 @@ export function PizzaConstructor() {
     }
 
     function showCreatePizzaModal() {
+        setIsAdd(!isAdd)
         setIsModalOpen(!isModalOpen)
         document.body.classList.add("overflow-hidden")
     }
@@ -41,6 +45,13 @@ export function PizzaConstructor() {
     function deleteUserPizza(pizza) {
         const updatedUserPizzas = userPizzas.filter(item => item !== pizza)
         setUserPizzas(updatedUserPizzas)
+    }
+
+    function changeUserPizza(pizza) {
+        setIsChange(!isChange)
+        setPizzaToChange(pizza)
+        setIsModalOpen(!isModalOpen)
+        document.body.classList.add("overflow-hidden")
     }
 
     if (userPizzas.length === 0) {
@@ -72,7 +83,7 @@ export function PizzaConstructor() {
                         <div className="price">{pizza.price}грн</div>
                         <button className="btn" onClick={() => addToCart(pizza)}>Додати до кошика</button>
                         <div className="change-field">
-                            <button className="edit-user-pizza-btn"></button>
+                            <button className="edit-user-pizza-btn" onClick={() => changeUserPizza(pizza)}></button>
                             <button className="delete-user-pizza-btn" onClick={() => deleteUserPizza(pizza)}></button>
                         </div>
                     </div>)}
