@@ -81,6 +81,7 @@ export function Header() {
             <nav>
                 <div><Link to="/">Home</Link></div>
                 <div><Link to="/more-pizzas">Pizza constructor</Link></div>
+                <div><Link to="/info">About us</Link></div>
             </nav>
             <button className="open-cart-btn" onClick={openCart}><span className="pizza-counter">{pizzas.length}</span></button>
             {isCartOpen &&

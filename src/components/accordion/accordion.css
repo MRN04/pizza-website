@@ -1,0 +1,42 @@
+.accordion {
+    max-width: 1140px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+
+    .accordion-item {
+        padding: 0 30px;
+        background: rgb(152, 152, 152);
+        border-radius: 40px;
+        
+
+        .accordion-item__title {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            p {
+                font-size: 30px;
+                font-weight: 500;
+            }
+
+            .arrow {
+                background: url("../../assets/arrow.svg") center/contain no-repeat;
+                display: block;
+                width: 40px;
+                height: 40px;
+                transition: .3s;
+            }
+        }
+
+        .accordion-item__info {
+            font-size: 18px;
+            transition: .3s;
+            overflow: hidden;
+ 
+        }
+    }
+}
