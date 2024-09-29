@@ -173,6 +173,7 @@ export function AddNewPizzaModal() {
     function addUserPizza() {
         if (isFormFilled.name == true && isFormFilled.img == true) {
             const updatedUserPizzas = [...userPizzas, userPizza]
+            localStorage.setItem("savedUserPizzas", JSON.stringify(updatedUserPizzas))
             setUserPizzas(updatedUserPizzas)
             setUserPizza({
                 name: "",
@@ -257,7 +258,9 @@ export function AddNewPizzaModal() {
         for (let i = 0; i < userPizzas.length; i++) {
             if (userPizzas[i].index === pizzaToChange.index) {
                 userPizzas[i] = updatedPizza
-                
+                const savedUserPizzas = JSON.parse(localStorage.getItem("savedUserPizzas"))
+                savedUserPizzas[i] = updatedPizza
+                localStorage.setItem("savedUserPizzas", JSON.stringify(savedUserPizzas))
             }
         }
 
@@ -320,7 +323,7 @@ export function AddNewPizzaModal() {
                                 )}
                             </div>
                         </div>
-                        <div className="btn" onClick={changeUserPizza}>Створити</div>
+                        <button type="submit" className="btn" onClick={changeUserPizza}>Змінити</button>
                     </form>
                 </div>
             </div>

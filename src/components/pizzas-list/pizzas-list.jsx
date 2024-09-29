@@ -20,6 +20,8 @@ export function PizzasList() {
                 }
             }
             setPizzasCart(updatedCartList)
+            const pizzasjson = JSON.stringify(updatedCartList);
+            localStorage.setItem("cartListState", pizzasjson)
         }
         else {
             const pizzaIndex = pizza.index
@@ -27,9 +29,12 @@ export function PizzasList() {
             for (let i = 0; i < updatedCounters.length; i++) {
                 if (updatedCounters[i].index === pizzaIndex) {
                     updatedCounters[i].count++
+                    
                 }
             }
             setPizzasCart(updatedCounters)
+            const pizzasjson = JSON.stringify(updatedCounters);
+            localStorage.setItem("cartListState", pizzasjson)
         }
     }
 

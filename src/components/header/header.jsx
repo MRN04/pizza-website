@@ -1,18 +1,26 @@
 import { useAtom } from "jotai";
 import { allPizzas, pizzaAtom } from "../../store/atoms"
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import logo from "../../assets/logo.png"
 import "./header.css"
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 
 export function Header() {
     
+
     const [pizzas, setPizzas] = useAtom(pizzaAtom)
     const [isCartOpen, setIsCartOpen] = useState(false)
 
     const sum = useMemo(() => pizzas.reduce((acc, pizza) => acc + (pizza.price * pizza.count),0), [pizzas])
-    
-    
+    const saved = localStorage.getItem("cartListState")
+
+    useEffect(() => { 
+        const pizzas = JSON.parse(localStorage.getItem("cartListState"))
+        if(pizzas) {
+            setPizzas(pizzas)
+        }
+    }, [])
+
     function openCart() {
         setIsCartOpen(!isCartOpen)    
     }
@@ -21,6 +29,13 @@ export function Header() {
         const updatedPizzasList = pizzas.filter(item => item !== pizza)
         setPizzas(updatedPizzasList)
         pizza.count = 0
+        let savedPizzasInCart = JSON.parse(localStorage.getItem("cartListState"))
+        for (let i = 0; i < savedPizzasInCart.length; i++) {
+            if (savedPizzasInCart[i].index === pizza.index) {
+                const updatedSavedPizzas = savedPizzasInCart.filter(item => item.index !== pizza.index)
+                localStorage.setItem("cartListState", JSON.stringify(updatedSavedPizzas))                
+            }
+        }
     }
 
     function clearPizzas() {
@@ -28,6 +43,7 @@ export function Header() {
         for (let i = 0; i < pizzas.length; i++) {
             pizzas[i].count = 0
         }
+        localStorage.removeItem("cartListState")
     }
 
     function reducePizzaAmount(pizza) {
@@ -42,6 +58,7 @@ export function Header() {
                     updatedCounters[i].count--
                 }
             }
+            localStorage.setItem("cartListState", JSON.stringify(updatedCounters))
             setPizzas(updatedCounters)
         }
     }
@@ -54,6 +71,7 @@ export function Header() {
                 updatedCounters[i].count++
             }
         }
+        localStorage.setItem("cartListState", JSON.stringify(updatedCounters))
         setPizzas(updatedCounters)
     }
   

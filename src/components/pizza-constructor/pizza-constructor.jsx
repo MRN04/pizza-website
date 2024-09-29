@@ -1,8 +1,9 @@
 import "./pizza-constructor.css"
 import { userPizzasInitial, pizzaAtom, isOpenModal, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../../store/atoms"
 import { useAtom } from "jotai"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AddNewPizzaModal } from "./pizza-constructor-modal"
+import { json } from "react-router-dom"
 
 export function PizzaConstructor() {
     
@@ -11,7 +12,14 @@ export function PizzaConstructor() {
     const [isModalOpen, setIsModalOpen] = useAtom(isOpenModal)
     const [isChange, setIsChange] = useAtom(isPizzaToChange)
     const [isAdd, setIsAdd] = useAtom(isPizzaToAdd)
-    const [pizzaToChange, setPizzaToChange] = useAtom(pizzaToChangeInitial)
+    const [pizzaToChange, setPizzaToChange] = useAtom(pizzaToChangeInitial)    
+
+    useEffect(() => { 
+        const pizzas = JSON.parse(localStorage.getItem("savedUserPizzas"))
+        if(pizzas) {
+            setUserPizzas(pizzas)
+        }
+    }, [])
     
     function addToCart(pizza) {
         if (pizza.count === 0) {
@@ -23,6 +31,8 @@ export function PizzaConstructor() {
                 }
             }
             setPizzasCart(updatedCartList)
+            const pizzasjson = JSON.stringify(updatedCartList);
+            localStorage.setItem("cartListState", pizzasjson)
         }
         else {
             const pizzaIndex = pizza.index
@@ -33,6 +43,8 @@ export function PizzaConstructor() {
                 }
             }
             setPizzasCart(updatedCounters)
+            const pizzasjson = JSON.stringify(updatedCounters);
+            localStorage.setItem("cartListState", pizzasjson)
         }
     }
 
@@ -44,6 +56,7 @@ export function PizzaConstructor() {
 
     function deleteUserPizza(pizza) {
         const updatedUserPizzas = userPizzas.filter(item => item !== pizza)
+        localStorage.setItem("savedUserPizzas", JSON.stringify(updatedUserPizzas))
         setUserPizzas(updatedUserPizzas)
     }
 
