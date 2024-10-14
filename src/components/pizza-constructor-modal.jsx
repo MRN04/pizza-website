@@ -1,6 +1,6 @@
 import { useAtom } from "jotai"
-import "./pizza-constructor.css"
-import { isOpenModal, userPizzaInitial, userPizzasInitial, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../../store/atoms"
+import "../css/pizza-constructor.css"
+import { isOpenModal, userPizzaInitial, userPizzasInitial, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../store/atoms"
 import { useRef, useState } from "react"
 
 const ingredients = [
@@ -280,6 +280,7 @@ export function AddNewPizzaModal() {
         return(
             <div className="wrap" onClick={closeModal}>
                 <div className="modal" onClick={(event) => event.stopPropagation()}>
+                    <button className="close-modal-btn" onClick={closeChangeModal}></button>
                     <h3>Створіть власну піцу!</h3>
                     <form>
                         <input type="text" placeholder="Назва піци" onChange={(el) => handleNameChanges(el)}/>
@@ -289,8 +290,10 @@ export function AddNewPizzaModal() {
                             <div className="checkboxes">
                                 {ingredients.map((ingredient, index) => 
                                 <div key={index} className="ingredient">
-                                    <input type="checkbox" id={ingredient.index} onChange={(el) => handleIngredientsChanges(el, ingredient.name, ingredient.price)}/>
-                                    <label htmlFor={ingredient.index}>{ingredient.name}</label>
+                                    <div className="checkbox-field">
+                                        <input type="checkbox" id={ingredient.index} onChange={(el) => handleIngredientsChanges(el, ingredient.name, ingredient.price)}/>
+                                        <label htmlFor={ingredient.index}>{ingredient.name}</label>
+                                    </div>
                                     <div className="price">{ingredient.price}грн</div>
                                 </div>
                                 )}
@@ -307,6 +310,7 @@ export function AddNewPizzaModal() {
         return(
             <div className="wrap" onClick={closeChangeModal}>
                 <div className="modal" onClick={(event) => event.stopPropagation()}>
+                    <button className="close-modal-btn" onClick={closeChangeModal}></button>
                     <h3>Змінити піцу</h3>
                     <form>
                         <input type="text" placeholder="Назва піци" defaultValue={pizzaToChange.name} onChange={(el) => changeName(el)}/>
@@ -316,8 +320,10 @@ export function AddNewPizzaModal() {
                             <div className="checkboxes">
                                 {ingredients.map((ingredient, index) => 
                                 <div key={index} className="ingredient">
-                                    <input type="checkbox" checked={isChecked(ingredient.name)} id={ingredient.index} onChange={(el) => changeIngredients(el, ingredient.name, ingredient.price)}/>
-                                    <label htmlFor={ingredient.index}>{ingredient.name}</label>
+                                    <div className="checkbox-field">
+                                        <input type="checkbox" checked={isChecked(ingredient.name)} id={ingredient.index} onChange={(el) => changeIngredients(el, ingredient.name, ingredient.price)}/>
+                                        <label htmlFor={ingredient.index}>{ingredient.name}</label>
+                                    </div>
                                     <div className="price">{ingredient.price}грн</div>
                                 </div>
                                 )}

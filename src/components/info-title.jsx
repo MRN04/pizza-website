@@ -1,4 +1,4 @@
-import "./info-title.css"
+import "../css/info-title.css"
 
 export function InfoTitle() {
     return (

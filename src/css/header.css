@@ -41,6 +41,14 @@ header {
         right: -12px;
       }
     }
+
+    .burger-btn {
+      display: none;
+      width: 60px;
+      height: 60px;
+      border: none;
+      background: url("../../assets/burger.svg") center/contain no-repeat;
+    }
   
     .cart {
       position: absolute;
@@ -53,7 +61,15 @@ header {
       display: flex;
       flex-direction: column;
       gap: 20px;
-  
+      z-index: 10;
+
+      .close-btn {
+        display: none;
+        width: 30px;
+        height: 30px;
+        background: url("../../assets/cross.svg") center/contain no-repeat;
+      }
+
       .options {
         display: flex;
         flex-direction: column;
@@ -105,12 +121,18 @@ header {
           background: url("/src/assets/trash-bin-icon.svg") center/contain no-repeat;
           border: none;
         }
+
+        .change {
+          display: flex;
+          gap: 20px;
+        }
       }
   
       .order {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        padding-right: 20px;
   
         .sum {
           display: flex;
@@ -134,3 +156,27 @@ header {
       }
     }
   }
+
+.burger-menu {
+  position: absolute;
+  height: calc(100vh - 80px);
+  padding: 30px 50px;
+  background: rgb(34 34 34);
+  right: 0;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: .3s;
+  z-index: 10;
+  
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    a {
+      font-size: 25px;
+    }
+  }
+}

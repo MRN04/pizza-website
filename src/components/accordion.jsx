@@ -1,23 +1,27 @@
 import { useEffect, useState, useRef } from "react"
-import "./accordion.css"
+import "../css/accordion.css"
 
 const accordionItems = [
     {
-        title: "Title",
-        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet assumenda laborum consequuntur quos illo cupiditate expedita iusto ex eum necessitatibus qui ut voluptatem repudiandae provident, voluptate, porro sapiente a! Ut!"
-    },
-    {
-        title: "Title",
-        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet assumenda laborum consequuntur quos illo cupiditate expedita iusto ex eum necessitatibus qui ut voluptatem repudiandae provident, voluptate, porro sapiente a! Ut!"
-    },
-    {
-        title: "Title",
-        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet assumenda laborum consequuntur quos illo cupiditate expedita iusto ex eum necessitatibus qui ut voluptatem repudiandae provident, voluptate, porro sapiente a! Ut!"
-    },
-    {
-        title: "Title",
-        info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet assumenda laborum consequuntur quos illo cupiditate expedita iusto ex eum necessitatibus qui ut voluptatem repudiandae provident, voluptate, porro sapiente a! Ut!"
-    },
+        title: 'About Us',
+        info: 'Welcome to our pizzeria! We have been serving delicious, hand-crafted pizzas using only the freshest ingredients since 1995. Our goal is to bring authentic Italian flavors to your table.',
+      },
+      {
+        title: 'Menu',
+        info: 'Our menu offers a wide variety of pizzas, including vegetarian, meat lovers, and gluten-free options. We also offer pasta, salads, and desserts. Check out our full menu for more details.',
+      },
+      {
+        title: 'Delivery',
+        info: 'We offer fast and reliable delivery to your doorstep. Whether you’re ordering for yourself or a large group, we ensure your pizza arrives hot and fresh. Delivery is available 7 days a week.',
+      },
+      {
+        title: 'Reviews',
+        info: 'Our customers love our pizzas! With over 1000 5-star reviews, we are proud to be the best-rated pizzeria in town. Visit our review section to see what others are saying about us.',
+      },
+      {
+        title: 'Contact Us',
+        info: 'Have any questions or want to place an order over the phone? Contact us at (123) 456-7890 or visit our location at 123 Pizza Street, Pizza City. We’re here to help!',
+      },
 ]
 
 function AccordionItem({title, info}) {

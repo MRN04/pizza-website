@@ -1,15 +1,35 @@
-import { useState } from "react"
-import { allPizzas, pizzaAtom, samePizzasAmount } from "../../store/atoms"
+import { allPizzas, pizzaAtom } from "../store/atoms"
 import { useAtom } from "jotai"
-import "./pizzas-list.css"
+import "../css/pizzas-list.css"
+import { useQuery } from "@tanstack/react-query"
+import { useEffect } from "react"
+import { Spinner } from "./spinner"
 
 
 
 export function PizzasList() {
+
+    const query = useQuery({ queryKey: ["pizzas"], queryFn: async () => {
+        const response = await fetch("http://localhost:5000/data")
+        const data = await response.json()
+        return data
+    }})
+
+    const queryUsers = useQuery({ queryKey: ["users"], queryFn: async () => {
+        const response = await fetch("http://localhost:5000/users")
+        const data = await response.json()
+        return data
+    }})
+    
     const [pizzas, setPizzas] = useAtom(allPizzas)
     const [pizzasCart, setPizzasCart] = useAtom(pizzaAtom)
-    const [samePizzas, setSamePizzasAmount] = useAtom(samePizzasAmount)
     
+    useEffect(() => {
+        if(query.data) {
+            setPizzas(query.data)
+        }
+    }, [query.data])
+
     function addToCart(pizza) {
         if (pizza.count === 0) {
             const pizzaIndex = pizza.index
@@ -36,6 +56,12 @@ export function PizzasList() {
             const pizzasjson = JSON.stringify(updatedCounters);
             localStorage.setItem("cartListState", pizzasjson)
         }
+    }
+
+    if (query.isLoading === true) {
+        return (
+            <Spinner />
+        )
     }
 
     return(

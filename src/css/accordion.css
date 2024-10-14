@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-
+    padding: 0 20px;
 
     .accordion-item {
         padding: 0 30px;
@@ -24,7 +24,7 @@
             }
 
             .arrow {
-                background: url("../../assets/arrow.svg") center/contain no-repeat;
+                background: url("../assets/arrow.svg") center/contain no-repeat;
                 display: block;
                 width: 40px;
                 height: 40px;

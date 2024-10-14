@@ -1,5 +1,5 @@
-import "./pizza-constructor.css"
-import { userPizzasInitial, pizzaAtom, isOpenModal, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../../store/atoms"
+import "../css/pizza-constructor.css"
+import { userPizzasInitial, pizzaAtom, isOpenModal, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../store/atoms"
 import { useAtom } from "jotai"
 import { useEffect, useState } from "react"
 import { AddNewPizzaModal } from "./pizza-constructor-modal"

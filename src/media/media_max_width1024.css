@@ -1,0 +1,40 @@
+@media screen and (max-width: 1024px) {
+    header nav a {
+        font-size: 16px;
+    }
+
+    .pizzas-list {
+        .pizza-card {
+            max-width: 300px;
+        }
+    }
+
+    .pizza-list-title {
+        .title {
+            h2 {
+                font-size: 40px;
+            }
+        }
+    }
+
+    .title {
+        h2 {
+            font-size: 40px;
+        }
+    }
+
+    .user-pizzas {
+        .user-pizza-card {
+            max-width: 300px;
+        }
+    }
+
+    .modal{
+        gap: 20px;
+
+        form .ingredients .checkboxes {
+            grid-template-columns: 250px 250px;
+        }
+    }
+
+}

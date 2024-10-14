@@ -1,4 +1,4 @@
-import "./pizza-constructor-title.css"
+import "../css/pizza-constructor-title.css"
 
 export function PizzaConstructorTitle() {
     return (

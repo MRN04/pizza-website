@@ -1,6 +1,6 @@
-import { Accordion } from "../components/accordion/accordion";
-import { Header } from "../components/header/header";
-import { InfoTitle } from "../components/info-title/info-title";
+import { Accordion } from "../components/accordion";
+import { Header } from "../components/header";
+import { InfoTitle } from "../components/info-title";
 
 
 export function Info() {

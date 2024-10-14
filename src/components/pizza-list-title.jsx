@@ -1,13 +1,15 @@
 import { useAtom } from "jotai";
-import "./pizza-list-title.css"
+import "../css/pizza-list-title.css"
 import { useState } from "react";
-import { allPizzas, searchFilterValue } from "../../store/atoms";
+import { allPizzas, searchFilterValue } from "../store/atoms";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 export function PizzaListTitle() {
     
+    const [pizzas, setPizzas] = useAtom(allPizzas)
     const [isOpen, setIsOpen] = useState(false);
-    const [pizzas, setPizzas] = useAtom(allPizzas);
-    const [searchFilter, setSearchFilter] = useAtom(searchFilterValue)
+    const [searchFilter, setSearchFilter] = useAtom(searchFilterValue)  
 
     function showFilters() {
         setIsOpen(!isOpen);
