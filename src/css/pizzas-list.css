@@ -41,3 +41,11 @@
       }
     }
   }
+
+.pagination {
+  margin-top: 50px;
+  
+  ul {
+    justify-content: center;
+  }
+}

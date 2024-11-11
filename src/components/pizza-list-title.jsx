@@ -1,15 +1,18 @@
-import { useAtom } from "jotai";
+import { useAtom, useAtomValue } from "jotai";
 import "../css/pizza-list-title.css"
 import { useState } from "react";
-import { allPizzas, searchFilterValue } from "../store/atoms";
-import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { allPizzas, pizzasCopy, searchFilterValue } from "../store/atoms";
+//import { useQuery } from "@tanstack/react-query";
+//import { useEffect } from "react";
+
+//reg
 
 export function PizzaListTitle() {
     
     const [pizzas, setPizzas] = useAtom(allPizzas)
     const [isOpen, setIsOpen] = useState(false);
     const [searchFilter, setSearchFilter] = useAtom(searchFilterValue)  
+    const [allPizzasCopy, setAllPizzasCopy] = useAtom(pizzasCopy)
 
     function showFilters() {
         setIsOpen(!isOpen);
@@ -25,18 +28,25 @@ export function PizzaListTitle() {
         setPizzas(sortedPizzasByDescent);     
     }
 
-    function getValue(el) {
-        setSearchFilter(el.target.value)
-        setPizzas(allPizzas.init)
+    const ingredientsFilter = (el) => {
+        const value = el.target.value
+        if (value === "") {
+            setPizzas(allPizzasCopy)
+        }
+        else {
+            const filteredPizzas = [...allPizzasCopy].filter(pizza => pizza.ingredients.toLowerCase().includes(value))
+            setPizzas(filteredPizzas)
+            console.log(filteredPizzas);
+        }
     }
 
-    function nameFilter() {
-        const filteredPizzas = [...pizzas].filter(pizza => pizza.ingredients.toLowerCase().includes(searchFilter.toLowerCase()))
-        setPizzas(filteredPizzas)
-    }
+    //function nameFilter() {
+    //    const filteredPizzas = [...pizzas].filter(pizza => pizza.ingredients.toLowerCase().includes(searchFilter.toLowerCase()))
+    //    setPizzas(filteredPizzas)
+    //}
 
     function resetSort() {
-        setPizzas(allPizzas.init)   
+        setPizzas(allPizzasCopy)
     }
 
     return (
@@ -52,8 +62,8 @@ export function PizzaListTitle() {
                     <button className="btn" onClick={priceSortByDescent}>Сортувати за спаданням ціни</button>
                 </div>
                 <div className="name-filter">
-                    <input type="text" placeholder="Пошук за інградієнтами" onChange={(el) => getValue(el)}/>
-                    <button className="btn" onClick={nameFilter}>Шукати</button>
+                    <input type="text" placeholder="Пошук за інградієнтами" onChange={(el) => ingredientsFilter(el)}/>
+                    <button className="btn">Шукати</button>
                 </div>
                 <button className="btn" onClick={resetSort}>Скинути</button>
             </div>}

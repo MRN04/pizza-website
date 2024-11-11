@@ -67,7 +67,7 @@
             .edit-user-pizza-btn {
                 width: 40px;
                 height: 40px;
-                background: url("../../assets/edit-icon.svg") center/contain no-repeat;
+                background: url("../assets/edit-icon.svg") center/contain no-repeat;
                 border: none;
                 cursor: pointer;
             }
@@ -75,7 +75,7 @@
             .delete-user-pizza-btn {
                 width: 40px;
                 height: 40px;
-                background: url("../../assets/trash-bin-icon-black.svg") center/contain no-repeat;
+                background: url("../assets/trash-bin-icon-black.svg") center/contain no-repeat;
                 border: none;
                 cursor: pointer;
             }
@@ -125,7 +125,7 @@
   .close-modal-btn {
     width: 30px;
     height: 30px;
-    background: url("../../assets/cross-black.svg") center/contain no-repeat;
+    background: url("../assets/cross-black.svg") center/contain no-repeat;
     border: none;
     margin-left: auto;
   }

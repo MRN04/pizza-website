@@ -1,7 +1,8 @@
 import { atom } from "jotai"
-import { useEffect } from "react"
+
 
 export const allPizzas = atom([])
+export const pizzasCopy = atom([])
 export const pizzaAtom = atom([])
 export const samePizzasAmount = atom(0)
 export const searchFilterValue = atom("")

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import logo from "../assets/logo.png"
 import "../css/header.css"
 import { json, Link } from "react-router-dom";
+import { Registration } from "./registration";
 
 export function Header() {
     
@@ -98,40 +99,43 @@ export function Header() {
                 <div><Link to="/more-pizzas">Pizza constructor</Link></div>
                 <div><Link to="/info">About us</Link></div>
             </nav>
-            <button className="open-cart-btn desktop-btn" onClick={openCart}><span className="pizza-counter">{pizzas.length}</span></button>
-            {isCartOpen &&
-                <div className="cart">
-                    <div className="close-btn" onClick={() => {setIsCartOpen(!isCartOpen)}}></div>
-                    <div className="options">
-                        {pizzas.map((pizza, index) => 
-                        <div key={index} className="option">
-                            <div className="pizza-info">
-                                <h3 className="pizza-name">{pizza.name}</h3>
-                                <p className="price">{pizza.price}</p>
-                            </div>
-                            <div className="change">
-                                <div className="pizza-amount">
-                                    <button className="amount-btn" onClick={() => reducePizzaAmount(pizza)}>-</button>
-                                    <span>{pizza.count}</span>
-                                    <button className="amount-btn" onClick={() => increasePizzaAmount(pizza)}>+</button>
+            <div className="btn-row">
+                <button className="open-cart-btn desktop-btn" onClick={openCart}><span className="pizza-counter">{pizzas.length}</span></button>
+                {isCartOpen &&
+                    <div className="cart">
+                        <div className="close-btn" onClick={() => {setIsCartOpen(!isCartOpen)}}></div>
+                        <div className="options">
+                            {pizzas.map((pizza, index) => 
+                            <div key={index} className="option">
+                                <div className="pizza-info">
+                                    <h3 className="pizza-name">{pizza.name}</h3>
+                                    <p className="price">{pizza.price}</p>
                                 </div>
-                                <button className="remove-btn" onClick={() => removePizza(pizza)}></button>
+                                <div className="change">
+                                    <div className="pizza-amount">
+                                        <button className="amount-btn" onClick={() => reducePizzaAmount(pizza)}>-</button>
+                                        <span>{pizza.count}</span>
+                                        <button className="amount-btn" onClick={() => increasePizzaAmount(pizza)}>+</button>
+                                    </div>
+                                    <button className="remove-btn" onClick={() => removePizza(pizza)}></button>
+                                </div>
+                            </div>
+                            )}
+                        </div>
+                        <div className="order">
+                            <div className="sum">
+                                <p>Сума</p>
+                                <span className="price"><b>{sum} грн</b></span>
+                            </div>
+                            <div className="btn-row">
+                                <button className="btn">Замовити</button>
+                                <button className="btn" onClick={clearPizzas}>Очистити</button>
                             </div>
                         </div>
-                        )}
                     </div>
-                    <div className="order">
-                        <div className="sum">
-                            <p>Сума</p>
-                            <span className="price"><b>{sum} грн</b></span>
-                        </div>
-                        <div className="btn-row">
-                            <button className="btn">Замовити</button>
-                            <button className="btn" onClick={clearPizzas}>Очистити</button>
-                        </div>
-                    </div>
-                </div>
-            }
+                }
+                <Registration />
+            </div>
             <button className="burger-btn" onClick={toggleBurgerMenu}></button>
             {isBurgerMenuOpen &&
             <div className="burger-menu" style={{ translate: burgerMenuTranslate }}>
