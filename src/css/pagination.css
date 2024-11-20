@@ -1,0 +1,28 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+    .prev-pagination-btn, .next-pagination-btn, .pagination-btn {
+        border: 1px solid;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .prev-pagination-btn, .next-pagination-btn {
+        font-size: 25px;
+        padding-bottom: 4px;
+    }
+
+    .pagination-btn:disabled {
+        border: none;
+        background: rgb(92, 92, 180);
+        color: #Fff;
+    }
+}

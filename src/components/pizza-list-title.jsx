@@ -1,11 +1,8 @@
-import { useAtom, useAtomValue } from "jotai";
+import { useAtom } from "jotai";
 import "../css/pizza-list-title.css"
 import { useState } from "react";
 import { allPizzas, pizzasCopy, searchFilterValue } from "../store/atoms";
-//import { useQuery } from "@tanstack/react-query";
-//import { useEffect } from "react";
 
-//reg
 
 export function PizzaListTitle() {
     
