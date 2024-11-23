@@ -3,11 +3,10 @@ import { pizzaAtom } from "../store/atoms"
 import { useEffect, useMemo, useRef, useState } from "react";
 import logo from "../assets/logo.png"
 import "../css/header.css"
-import { json, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Registration } from "./registration";
 
 export function Header() {
-    
 
     const [pizzas, setPizzas] = useAtom(pizzaAtom)
     const [isCartOpen, setIsCartOpen] = useState(false)
@@ -15,7 +14,7 @@ export function Header() {
     const [burgerMenuTranslate, setBurgerMenuTranslate] = useState("350px")
 
     const sum = useMemo(() => pizzas.reduce((acc, pizza) => acc + (pizza.price * pizza.count),0), [pizzas])
-    const saved = localStorage.getItem("cartListState")
+
 
     useEffect(() => { 
         const pizzas = JSON.parse(localStorage.getItem("cartListState"))

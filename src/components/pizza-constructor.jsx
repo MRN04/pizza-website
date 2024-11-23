@@ -1,18 +1,16 @@
 import "../css/pizza-constructor.css"
-import { userPizzasInitial, pizzaAtom, isOpenModal, isPizzaToChange, isPizzaToAdd, pizzaToChangeInitial } from "../store/atoms"
+import { pizzaAtom, userPizzasInitial } from "../store/atoms"
 import { useAtom } from "jotai"
 import { useEffect, useState } from "react"
-import { AddNewPizzaModal } from "./pizza-constructor-modal"
-import { json } from "react-router-dom"
+import { CreatePizzaModal } from "./CreatePizzaModal"
+import { ChangePizzaModal } from "./ChangePizzaModal"
 
 export function PizzaConstructor() {
     
     const [userPizzas, setUserPizzas] = useAtom(userPizzasInitial)
     const [pizzasCart, setPizzasCart] = useAtom(pizzaAtom)
-    const [isModalOpen, setIsModalOpen] = useAtom(isOpenModal)
-    const [isChange, setIsChange] = useAtom(isPizzaToChange)
-    const [isAdd, setIsAdd] = useAtom(isPizzaToAdd)
-    const [pizzaToChange, setPizzaToChange] = useAtom(pizzaToChangeInitial)    
+    const [isCreatePizzaModalOpen, setIsCreatePizzaModalOpen] = useState(false)
+    const [isChangePizzaModalOpen, setIsChangePizzaModalOpen] = useState(false)
 
     useEffect(() => { 
         const pizzas = JSON.parse(localStorage.getItem("savedUserPizzas"))
@@ -48,9 +46,14 @@ export function PizzaConstructor() {
         }
     }
 
-    function showCreatePizzaModal() {
-        setIsAdd(!isAdd)
-        setIsModalOpen(!isModalOpen)
+    const toggleCreatePizzaModal = () => {
+        setIsCreatePizzaModalOpen(!isCreatePizzaModalOpen)
+        document.body.classList.add("overflow-hidden")
+    }
+
+    const toggleChangePizzaModal = (pizza) => {
+        setPizzaToChange(pizza)
+        setIsChangePizzaModalOpen(!isChangePizzaModalOpen)
         document.body.classList.add("overflow-hidden")
     }
 
@@ -60,22 +63,12 @@ export function PizzaConstructor() {
         setUserPizzas(updatedUserPizzas)
     }
 
-    function changeUserPizza(pizza) {
-        setIsChange(!isChange)
-        setPizzaToChange(pizza)
-        setIsModalOpen(!isModalOpen)
-        document.body.classList.add("overflow-hidden")
-    }
-
     if (userPizzas.length === 0) {
         return (
             <div className="no-user-pizzas">
                 <h3>У вас ще немає власно створених піц</h3>
-                <p>Якщоо хочете спробувати незвичне поєднання інградієнтів, створіть власну піцу прямо зараз</p>
-                <button className="btn" onClick={showCreatePizzaModal}>Створити</button>
-                {isModalOpen && 
-                <AddNewPizzaModal />
-                }
+                <p>Якщоо хочете спробувати незвичне поєднання інградієнтів, створіть власну піцу прямо зараз!</p>
+                <CreatePizzaModal />
             </div>
         )
     }
@@ -83,7 +76,7 @@ export function PizzaConstructor() {
         return (
             <div className="user-pizzas">
                 <div className="add-pizza-field">
-                    <button className="btn" onClick={showCreatePizzaModal}>Додати власну піцу</button>
+                    <CreatePizzaModal />
                 </div>
                 <div className="user-pizzas-list">
                 {userPizzas.map((pizza, index) => 
@@ -96,14 +89,11 @@ export function PizzaConstructor() {
                         <div className="price">{pizza.price}грн</div>
                         <button className="btn" onClick={() => addToCart(pizza)}>Додати до кошика</button>
                         <div className="change-field">
-                            <button className="edit-user-pizza-btn" onClick={() => changeUserPizza(pizza)}></button>
-                            <button className="delete-user-pizza-btn" onClick={() => deleteUserPizza(pizza)}></button>
+                            <ChangePizzaModal pizza={pizza} />
+                            <button className="delete-user-pizza-btn" onClick={() => toggleChangePizzaModal(pizza)}></button>
                         </div>
                     </div>)}
                 </div>
-                {isModalOpen && 
-                <AddNewPizzaModal />
-                }
             </div>
         )
     }
